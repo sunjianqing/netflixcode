@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.parquet:parquet-avro:1.8.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.parquet/parquet-avro/1.8.1/36938d37abcd3abd149d9d6b7bf84d596cfa401d/parquet-avro-1.8.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.parquet/parquet-avro/1.8.1/82b43e371e9e4d2baa628b135187151bf470e416/parquet-avro-1.8.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
