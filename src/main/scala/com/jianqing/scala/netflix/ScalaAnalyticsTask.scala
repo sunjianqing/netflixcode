@@ -1,14 +1,13 @@
 package com.jianqing.scala.netflix
 
 import com.jianqing.netflix.TaskInterface
-import org.apache.parquet.hadoop.metadata.CompressionCodecName
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.{SparkConf, SparkContext}
 
 /**
   * Created by jianqing_sun on 11/2/17.
   */
 class ScalaAnalyticsTask() extends TaskInterface{
+  val outputpath = "/tmp/movieanalytics"
   override def init(): Unit = {
 
   }
@@ -22,7 +21,7 @@ class ScalaAnalyticsTask() extends TaskInterface{
     val df = sparkSession.sqlContext.read.json("/tmp/moviejson")
     df.createOrReplaceTempView("movie")
 
-    sparkSession.sqlContext.sql("select * from movie order by box_office desc limit 2").collect.foreach(println)
+    sparkSession.sqlContext.sql("select * from movie order by box_office desc limit 2").write.format("json").save(outputpath)
     0
   }
 

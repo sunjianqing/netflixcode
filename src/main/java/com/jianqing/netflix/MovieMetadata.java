@@ -10,11 +10,12 @@ import org.apache.avro.specific.SpecificData;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class MovieMetadata extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 2167544495213614908L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"MovieMetadata\",\"namespace\":\"com.jianqing.netflix\",\"fields\":[{\"name\":\"title\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"default\":\"\"},{\"name\":\"time\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"default\":\"\"},{\"name\":\"director\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"default\":\"\"},{\"name\":\"budget\",\"type\":\"int\",\"default\":0},{\"name\":\"box_office\",\"type\":\"int\",\"default\":0},{\"name\":\"characters\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"Actor\",\"fields\":[{\"name\":\"firstname\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"default\":\"\"},{\"name\":\"lastname\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"default\":\"\"},{\"name\":\"birthday\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"default\":\"\"}]}}}]}");
+  private static final long serialVersionUID = -4633810546201309274L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"MovieMetadata\",\"namespace\":\"com.jianqing.netflix\",\"fields\":[{\"name\":\"title\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"default\":\"\"},{\"name\":\"time\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"default\":\"\"},{\"name\":\"year\",\"type\":\"int\",\"default\":0},{\"name\":\"director\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"default\":\"\"},{\"name\":\"budget\",\"type\":\"int\",\"default\":0},{\"name\":\"box_office\",\"type\":\"int\",\"default\":0},{\"name\":\"characters\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"Actor\",\"fields\":[{\"name\":\"firstname\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"default\":\"\"},{\"name\":\"lastname\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"default\":\"\"},{\"name\":\"birthday\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"default\":\"\"}]}}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
   @Deprecated public String title;
   @Deprecated public String time;
+  @Deprecated public int year;
   @Deprecated public String director;
   @Deprecated public int budget;
   @Deprecated public int box_office;
@@ -31,14 +32,16 @@ public class MovieMetadata extends org.apache.avro.specific.SpecificRecordBase i
    * All-args constructor.
    * @param title The new value for title
    * @param time The new value for time
+   * @param year The new value for year
    * @param director The new value for director
    * @param budget The new value for budget
    * @param box_office The new value for box_office
    * @param characters The new value for characters
    */
-  public MovieMetadata(String title, String time, String director, Integer budget, Integer box_office, java.util.List<Actor> characters) {
+  public MovieMetadata(String title, String time, Integer year, String director, Integer budget, Integer box_office, java.util.List<Actor> characters) {
     this.title = title;
     this.time = time;
+    this.year = year;
     this.director = director;
     this.budget = budget;
     this.box_office = box_office;
@@ -51,10 +54,11 @@ public class MovieMetadata extends org.apache.avro.specific.SpecificRecordBase i
     switch (field$) {
     case 0: return title;
     case 1: return time;
-    case 2: return director;
-    case 3: return budget;
-    case 4: return box_office;
-    case 5: return characters;
+    case 2: return year;
+    case 3: return director;
+    case 4: return budget;
+    case 5: return box_office;
+    case 6: return characters;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -65,10 +69,11 @@ public class MovieMetadata extends org.apache.avro.specific.SpecificRecordBase i
     switch (field$) {
     case 0: title = (String)value$; break;
     case 1: time = (String)value$; break;
-    case 2: director = (String)value$; break;
-    case 3: budget = (Integer)value$; break;
-    case 4: box_office = (Integer)value$; break;
-    case 5: characters = (java.util.List<Actor>)value$; break;
+    case 2: year = (Integer)value$; break;
+    case 3: director = (String)value$; break;
+    case 4: budget = (Integer)value$; break;
+    case 5: box_office = (Integer)value$; break;
+    case 6: characters = (java.util.List<Actor>)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -103,6 +108,22 @@ public class MovieMetadata extends org.apache.avro.specific.SpecificRecordBase i
    */
   public void setTime(String value) {
     this.time = value;
+  }
+
+  /**
+   * Gets the value of the 'year' field.
+   * @return The value of the 'year' field.
+   */
+  public Integer getYear() {
+    return year;
+  }
+
+  /**
+   * Sets the value of the 'year' field.
+   * @param value the value to set.
+   */
+  public void setYear(Integer value) {
+    this.year = value;
   }
 
   /**
@@ -203,6 +224,7 @@ public class MovieMetadata extends org.apache.avro.specific.SpecificRecordBase i
 
     private String title;
     private String time;
+    private int year;
     private String director;
     private int budget;
     private int box_office;
@@ -227,21 +249,25 @@ public class MovieMetadata extends org.apache.avro.specific.SpecificRecordBase i
         this.time = data().deepCopy(fields()[1].schema(), other.time);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.director)) {
-        this.director = data().deepCopy(fields()[2].schema(), other.director);
+      if (isValidValue(fields()[2], other.year)) {
+        this.year = data().deepCopy(fields()[2].schema(), other.year);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.budget)) {
-        this.budget = data().deepCopy(fields()[3].schema(), other.budget);
+      if (isValidValue(fields()[3], other.director)) {
+        this.director = data().deepCopy(fields()[3].schema(), other.director);
         fieldSetFlags()[3] = true;
       }
-      if (isValidValue(fields()[4], other.box_office)) {
-        this.box_office = data().deepCopy(fields()[4].schema(), other.box_office);
+      if (isValidValue(fields()[4], other.budget)) {
+        this.budget = data().deepCopy(fields()[4].schema(), other.budget);
         fieldSetFlags()[4] = true;
       }
-      if (isValidValue(fields()[5], other.characters)) {
-        this.characters = data().deepCopy(fields()[5].schema(), other.characters);
+      if (isValidValue(fields()[5], other.box_office)) {
+        this.box_office = data().deepCopy(fields()[5].schema(), other.box_office);
         fieldSetFlags()[5] = true;
+      }
+      if (isValidValue(fields()[6], other.characters)) {
+        this.characters = data().deepCopy(fields()[6].schema(), other.characters);
+        fieldSetFlags()[6] = true;
       }
     }
 
@@ -259,21 +285,25 @@ public class MovieMetadata extends org.apache.avro.specific.SpecificRecordBase i
         this.time = data().deepCopy(fields()[1].schema(), other.time);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.director)) {
-        this.director = data().deepCopy(fields()[2].schema(), other.director);
+      if (isValidValue(fields()[2], other.year)) {
+        this.year = data().deepCopy(fields()[2].schema(), other.year);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.budget)) {
-        this.budget = data().deepCopy(fields()[3].schema(), other.budget);
+      if (isValidValue(fields()[3], other.director)) {
+        this.director = data().deepCopy(fields()[3].schema(), other.director);
         fieldSetFlags()[3] = true;
       }
-      if (isValidValue(fields()[4], other.box_office)) {
-        this.box_office = data().deepCopy(fields()[4].schema(), other.box_office);
+      if (isValidValue(fields()[4], other.budget)) {
+        this.budget = data().deepCopy(fields()[4].schema(), other.budget);
         fieldSetFlags()[4] = true;
       }
-      if (isValidValue(fields()[5], other.characters)) {
-        this.characters = data().deepCopy(fields()[5].schema(), other.characters);
+      if (isValidValue(fields()[5], other.box_office)) {
+        this.box_office = data().deepCopy(fields()[5].schema(), other.box_office);
         fieldSetFlags()[5] = true;
+      }
+      if (isValidValue(fields()[6], other.characters)) {
+        this.characters = data().deepCopy(fields()[6].schema(), other.characters);
+        fieldSetFlags()[6] = true;
       }
     }
 
@@ -356,6 +386,44 @@ public class MovieMetadata extends org.apache.avro.specific.SpecificRecordBase i
     }
 
     /**
+      * Gets the value of the 'year' field.
+      * @return The value.
+      */
+    public Integer getYear() {
+      return year;
+    }
+
+    /**
+      * Sets the value of the 'year' field.
+      * @param value The value of 'year'.
+      * @return This builder.
+      */
+    public Builder setYear(int value) {
+      validate(fields()[2], value);
+      this.year = value;
+      fieldSetFlags()[2] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'year' field has been set.
+      * @return True if the 'year' field has been set, false otherwise.
+      */
+    public boolean hasYear() {
+      return fieldSetFlags()[2];
+    }
+
+
+    /**
+      * Clears the value of the 'year' field.
+      * @return This builder.
+      */
+    public Builder clearYear() {
+      fieldSetFlags()[2] = false;
+      return this;
+    }
+
+    /**
       * Gets the value of the 'director' field.
       * @return The value.
       */
@@ -369,9 +437,9 @@ public class MovieMetadata extends org.apache.avro.specific.SpecificRecordBase i
       * @return This builder.
       */
     public Builder setDirector(String value) {
-      validate(fields()[2], value);
+      validate(fields()[3], value);
       this.director = value;
-      fieldSetFlags()[2] = true;
+      fieldSetFlags()[3] = true;
       return this;
     }
 
@@ -380,7 +448,7 @@ public class MovieMetadata extends org.apache.avro.specific.SpecificRecordBase i
       * @return True if the 'director' field has been set, false otherwise.
       */
     public boolean hasDirector() {
-      return fieldSetFlags()[2];
+      return fieldSetFlags()[3];
     }
 
 
@@ -390,7 +458,7 @@ public class MovieMetadata extends org.apache.avro.specific.SpecificRecordBase i
       */
     public Builder clearDirector() {
       director = null;
-      fieldSetFlags()[2] = false;
+      fieldSetFlags()[3] = false;
       return this;
     }
 
@@ -408,9 +476,9 @@ public class MovieMetadata extends org.apache.avro.specific.SpecificRecordBase i
       * @return This builder.
       */
     public Builder setBudget(int value) {
-      validate(fields()[3], value);
+      validate(fields()[4], value);
       this.budget = value;
-      fieldSetFlags()[3] = true;
+      fieldSetFlags()[4] = true;
       return this;
     }
 
@@ -419,7 +487,7 @@ public class MovieMetadata extends org.apache.avro.specific.SpecificRecordBase i
       * @return True if the 'budget' field has been set, false otherwise.
       */
     public boolean hasBudget() {
-      return fieldSetFlags()[3];
+      return fieldSetFlags()[4];
     }
 
 
@@ -428,7 +496,7 @@ public class MovieMetadata extends org.apache.avro.specific.SpecificRecordBase i
       * @return This builder.
       */
     public Builder clearBudget() {
-      fieldSetFlags()[3] = false;
+      fieldSetFlags()[4] = false;
       return this;
     }
 
@@ -446,9 +514,9 @@ public class MovieMetadata extends org.apache.avro.specific.SpecificRecordBase i
       * @return This builder.
       */
     public Builder setBoxOffice(int value) {
-      validate(fields()[4], value);
+      validate(fields()[5], value);
       this.box_office = value;
-      fieldSetFlags()[4] = true;
+      fieldSetFlags()[5] = true;
       return this;
     }
 
@@ -457,7 +525,7 @@ public class MovieMetadata extends org.apache.avro.specific.SpecificRecordBase i
       * @return True if the 'box_office' field has been set, false otherwise.
       */
     public boolean hasBoxOffice() {
-      return fieldSetFlags()[4];
+      return fieldSetFlags()[5];
     }
 
 
@@ -466,7 +534,7 @@ public class MovieMetadata extends org.apache.avro.specific.SpecificRecordBase i
       * @return This builder.
       */
     public Builder clearBoxOffice() {
-      fieldSetFlags()[4] = false;
+      fieldSetFlags()[5] = false;
       return this;
     }
 
@@ -484,9 +552,9 @@ public class MovieMetadata extends org.apache.avro.specific.SpecificRecordBase i
       * @return This builder.
       */
     public Builder setCharacters(java.util.List<Actor> value) {
-      validate(fields()[5], value);
+      validate(fields()[6], value);
       this.characters = value;
-      fieldSetFlags()[5] = true;
+      fieldSetFlags()[6] = true;
       return this;
     }
 
@@ -495,7 +563,7 @@ public class MovieMetadata extends org.apache.avro.specific.SpecificRecordBase i
       * @return True if the 'characters' field has been set, false otherwise.
       */
     public boolean hasCharacters() {
-      return fieldSetFlags()[5];
+      return fieldSetFlags()[6];
     }
 
 
@@ -505,7 +573,7 @@ public class MovieMetadata extends org.apache.avro.specific.SpecificRecordBase i
       */
     public Builder clearCharacters() {
       characters = null;
-      fieldSetFlags()[5] = false;
+      fieldSetFlags()[6] = false;
       return this;
     }
 
@@ -515,10 +583,11 @@ public class MovieMetadata extends org.apache.avro.specific.SpecificRecordBase i
         MovieMetadata record = new MovieMetadata();
         record.title = fieldSetFlags()[0] ? this.title : (String) defaultValue(fields()[0]);
         record.time = fieldSetFlags()[1] ? this.time : (String) defaultValue(fields()[1]);
-        record.director = fieldSetFlags()[2] ? this.director : (String) defaultValue(fields()[2]);
-        record.budget = fieldSetFlags()[3] ? this.budget : (Integer) defaultValue(fields()[3]);
-        record.box_office = fieldSetFlags()[4] ? this.box_office : (Integer) defaultValue(fields()[4]);
-        record.characters = fieldSetFlags()[5] ? this.characters : (java.util.List<Actor>) defaultValue(fields()[5]);
+        record.year = fieldSetFlags()[2] ? this.year : (Integer) defaultValue(fields()[2]);
+        record.director = fieldSetFlags()[3] ? this.director : (String) defaultValue(fields()[3]);
+        record.budget = fieldSetFlags()[4] ? this.budget : (Integer) defaultValue(fields()[4]);
+        record.box_office = fieldSetFlags()[5] ? this.box_office : (Integer) defaultValue(fields()[5]);
+        record.characters = fieldSetFlags()[6] ? this.characters : (java.util.List<Actor>) defaultValue(fields()[6]);
         return record;
       } catch (Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);

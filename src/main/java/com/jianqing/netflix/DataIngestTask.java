@@ -114,6 +114,7 @@ public class DataIngestTask implements TaskInterface {
         movies.add(
                 MovieMetadata.newBuilder()
                         .setTitle("The Fate of the Furious")
+                        .setYear(2017)
                         .setDirector("F. Gary Gray")
                         .setCharacters(Arrays.asList(
                                 Actor.newBuilder().setFirstname("Vin").setLastname("Diesel").build(),
@@ -125,6 +126,7 @@ public class DataIngestTask implements TaskInterface {
         movies.add(
                 MovieMetadata.newBuilder()
                         .setTitle("Beauty and the Beast")
+                        .setYear(2017)
                         .setDirector("Bill Condon")
                         .setCharacters(Arrays.asList(
                                 Actor.newBuilder().setFirstname("Emma").setLastname("Watson").build(),
@@ -134,24 +136,26 @@ public class DataIngestTask implements TaskInterface {
                         .build());
         movies.add(
                 MovieMetadata.newBuilder()
-                        .setTitle("The Fate of the Furious")
-                        .setDirector("F. Gary Gray")
+                        .setTitle("Despicable Me 3")
+                        .setYear(2017)
+                        .setDirector("Pierre Coffin")
                         .setCharacters(Arrays.asList(
-                                Actor.newBuilder().setFirstname("Vin").setLastname("Diesel").build(),
-                                Actor.newBuilder().setFirstname("Dwayne").setLastname("Johnson").build())
+                                Actor.newBuilder().setFirstname("Steve").setLastname("Carell").build(),
+                                Actor.newBuilder().setFirstname("Kristen").setLastname("Wiig").build())
                         )
-                        .setBoxOffice(1290000002)
+                        .setBoxOffice(1030000000)
                         .build());
 
         movies.add(
                 MovieMetadata.newBuilder()
-                        .setTitle("The Fate of the Furious")
-                        .setDirector("F. Gary Gray")
+                        .setTitle("Captain America: Civil War")
+                        .setYear(2016)
+                        .setDirector("Anthony Russo")
                         .setCharacters(Arrays.asList(
-                                Actor.newBuilder().setFirstname("Vin").setLastname("Diesel").build(),
-                                Actor.newBuilder().setFirstname("Dwayne").setLastname("Johnson").build())
+                                Actor.newBuilder().setFirstname("Chris").setLastname("Evans").build(),
+                                Actor.newBuilder().setFirstname("Robert").setLastname("Downey Jr.").build())
                         )
-                        .setBoxOffice(1290000003)
+                        .setBoxOffice(1530000000)
                         .build());
 
         return movies;
