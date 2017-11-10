@@ -20,7 +20,7 @@ class ScalaAnalyticsTask() extends TaskInterface{
       .getOrCreate()
     val df: DataFrame = sparkSession.sqlContext.read.json("/tmp/moviejson")
     df.createOrReplaceTempView("movie")
-
+    df.distinct()
     sparkSession.sqlContext.sql("select * from movie order by box_office desc limit 2").write.format("json").save(outputpath)
     0
   }
