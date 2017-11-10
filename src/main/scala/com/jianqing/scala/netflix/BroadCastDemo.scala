@@ -54,6 +54,8 @@ object BroadCastDemo extends App{
     rdd2.sortBy[Int]((x : Tuple2[Int, String]) => { x._1}, true, 10).collect().foreach( (x) => println(x._1 + " " +  x._2))
     rdd2.sortBy[Int](tf, true, 10)
 
+    // Count by key 返回map
+    val cntByKey: collection.Map[Int, Long] = rdd2.countByKey()
 
     // Group by multiple columns
     // records.groupBy(record => (record.column1, record.column2, record.column3))
