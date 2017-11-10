@@ -1,7 +1,7 @@
 package com.jianqing.scala.netflix
 
 import com.jianqing.netflix.TaskInterface
-import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.{DataFrame, SparkSession}
 
 /**
   * Created by jianqing_sun on 11/2/17.
@@ -18,9 +18,9 @@ class ScalaAnalyticsTask() extends TaskInterface{
       master("local")
       .appName("Analytics Task")
       .getOrCreate()
-    val df = sparkSession.sqlContext.read.json("/tmp/moviejson")
+    val df: DataFrame = sparkSession.sqlContext.read.json("/tmp/moviejson")
     df.createOrReplaceTempView("movie")
-
+    df.distinct()
     sparkSession.sqlContext.sql("select * from movie order by box_office desc limit 2").write.format("json").save(outputpath)
     0
   }
