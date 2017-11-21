@@ -48,6 +48,7 @@ object DataframeDemo extends App{
     someDF.select("number", "word").explain(true)
 
     someDF.select("number","word").show()
+
   }
 
 }
