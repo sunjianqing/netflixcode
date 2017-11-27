@@ -1,8 +1,7 @@
 package com.jianqing.scala.netflix
 
 import org.apache.spark.rdd.RDD
-import org.apache.spark.sql.{SQLContext, SparkSession}
-import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.sql.SparkSession
 
 /**
   * Created by jianqing_sun on 11/9/17.
@@ -48,6 +47,7 @@ object DataframeDemo extends App{
     someDF.select("number", "word").explain(true)
 
     someDF.select("number","word").show()
+
   }
 
 }
