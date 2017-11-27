@@ -30,6 +30,15 @@ object BroadCastDemo extends App{
       ("USA", "ipad", 2),
       ("CAN", "mac", 3)))
 
+    val rdd1 = sc.parallelize(Seq(
+      ("CHN", "iphone", 1),
+      ("CHN", "iphone", 2),
+      ("CHN", "mac", 1),
+      ("USA", "ipad", 2),
+      ("CAN", "mac", 4)))
+
+
+
     val matchedRdd: RDD[(String, Int)] = rdd.flatMap(e => {
       val key = e._1 + "_" + e._2
       if(allPossiblities.value.contains(key)){
@@ -61,6 +70,10 @@ object BroadCastDemo extends App{
     // records.groupBy(record => (record.column1, record.column2, record.column3))
     matchedRdd.foreach(x => println(x.toString()))
     matchedRdd.collect()
+
+    rdd.union(rdd1)
+    println("Test Intersection")
+    rdd.intersection(rdd1).map( x => println(x._1 + " " + x._2 + " " + x._3)).collect()
 
   }
 }
