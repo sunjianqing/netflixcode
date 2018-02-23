@@ -11,7 +11,7 @@ case class Movie(title: String, movieId: Int, userId: Int, device: Int)
 object DataframeDemo extends App {
   override def main(args: Array[String]): Unit = {
 
-    val mySpark: SparkSession = SparkSession
+    val mySpark = SparkSession
       .builder()
       .master("local[*]")
       .appName("Spark SQL basic example")
@@ -86,6 +86,8 @@ object DataframeDemo extends App {
 
     leftJoinDemo(sparkSession)
 
+    aggrDemo(sparkSession)
+
   }
 
   def leftJoinDemo(sparkSession: SparkSession): Unit = {
@@ -126,6 +128,9 @@ object DataframeDemo extends App {
 
     joinedData.foreach( (r: Row) => {
       val firstValue = r(0)
+      if(r(0) == null){ // left join value is null
+        println("+++++++ got department id null+++")
+      }
       val secondValue = r.getAs[String](1)
       val thirdValue = r.getAs[String](2)
 
@@ -134,4 +139,30 @@ object DataframeDemo extends App {
 
   }
 
+  def aggrDemo(sparkSession: SparkSession): Unit = {
+    val sc = sparkSession.sqlContext
+    val ds = sc.createDataFrame(Seq(
+      (1, "hello"),
+      (2, "world"),
+      (3, "spark"),
+      (4, "hello"),
+      (5, "apple"))).toDF("id", "name")
+
+    import org.apache.spark.sql.functions._
+    val aggdata = ds.groupBy("name").agg(count("name") as "cnt" )
+    //ds.groupBy("name").agg(Map("name" -> "count"))
+    /*
+    +-----+-----------+
+    | name|count(name)|
+    +-----+-----------+
+    |apple|          1|
+    |hello|          2|
+    |spark|          1|
+    |world|          1|
+    +-----+-----------+
+     */
+    
+    aggdata.show()
+
+  }
 }
