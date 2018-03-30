@@ -20,6 +20,10 @@ object UDFDemo extends App {
     import sparkSession.implicits._
     val dataset = Seq((0, "hello"), (1, "world"), (2, "spark")).toDF("id", "text")
 
+    //val upper: String 输入 => String 输出 = _.toUpperCase
+
+    //val upper1: String 输入string => Int 输出int = _.hashCode
+
     val upper = (v: String) => {
       v.toUpperCase
     }

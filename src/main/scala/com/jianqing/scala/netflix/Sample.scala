@@ -1,5 +1,6 @@
 package com.jianqing.scala.netflix
 
+import org.apache.spark.rdd.RDD
 import org.apache.spark.{Partition, SparkConf, SparkContext}
 
 /**
@@ -21,7 +22,7 @@ class Sample {
     val rdd2 = rdd1.repartition(2)
     val partitions2 = rdd2.partitions
 
-    val rdd3 = sc.parallelize(Seq(
+    val rdd3: RDD[(String, Int)] = sc.parallelize(Seq(
       ("key1", 5),
       ("key2", 4)))
 
@@ -49,6 +50,7 @@ class Sample {
     }
     }
     updated.collect()
+
 
   }
 }
