@@ -37,8 +37,6 @@ object BroadCastDemo extends App{
       ("USA", "ipad", 2),
       ("CAN", "mac", 4)))
 
-
-
     val matchedRdd: RDD[(String, Int)] = rdd.flatMap(e => {
       val key = e._1 + "_" + e._2
       if(allPossiblities.value.contains(key)){
